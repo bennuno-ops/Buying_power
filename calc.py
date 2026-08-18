@@ -74,6 +74,12 @@ class DataStore:
             key=lambda p: p.stat().st_mtime,
             reverse=True,
         )
+        if not candidates:
+            candidates = sorted(
+                ROOT.rglob("פאנל_רמת_חיים_קבוצות_בסיס_2014_2026*.xlsx"),
+                key=lambda p: p.stat().st_mtime,
+                reverse=True,
+            )
         for candidate in candidates:
             try:
                 sheets = pd.ExcelFile(candidate).sheet_names
